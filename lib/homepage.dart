@@ -1,46 +1,53 @@
 import 'package:flutter/material.dart';
 
-class Calculator extends StatefulWidget {
+class Calculator extends StatelessWidget {
   const Calculator({super.key});
 
-  @override
-  State<Calculator> createState() => _CalculatorState();
-}
-
-class _CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        title: Text(
+          "Calculator",
+          style: TextStyle(
+              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         backgroundColor: Colors.blue,
-        title: Text("Calculator"),
       ),
       body: Column(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SizedBox(
-                height: 50,
-                child: Container(
+          SizedBox(
+            height: 50,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
                   alignment: Alignment.bottomRight,
-                  child: Text("input"),
-                ),
-              )
-            ],
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Column(
+                      children: [Text("Enter Number")],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SizedBox(
-                height: 50,
-                child: Container(
-                  alignment: Alignment.bottomRight,
-                  child: Text("result"),
+          const SizedBox(
+            height: 50,
+          ),
+          SizedBox(
+            height: 50,
+            child: Container(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Column(
+                  children: [Text("result")],
                 ),
-              )
-            ],
+              ),
+            ),
           )
         ],
       ),
