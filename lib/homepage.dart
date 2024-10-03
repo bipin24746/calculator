@@ -1,4 +1,7 @@
-import 'package:calculator/buttons.dart';
+import 'package:calculator/buttons/addbutton.dart';
+import 'package:calculator/buttons/div.dart';
+import 'package:calculator/buttons/mul.dart';
+import 'package:calculator/buttons/subbutton.dart';
 import 'package:flutter/material.dart';
 
 class Calculator extends StatefulWidget {
@@ -11,8 +14,13 @@ class Calculator extends StatefulWidget {
 class _CalculatorState extends State<Calculator> {
   TextEditingController num1 = TextEditingController();
   TextEditingController num2 = TextEditingController();
-  int result = 0;
-  void add() {}
+  String result = "0";
+  void setResult(String newResult) {
+    setState(() {
+      result = newResult;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +38,7 @@ class _CalculatorState extends State<Calculator> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                controller: num1,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20)),
@@ -41,6 +50,7 @@ class _CalculatorState extends State<Calculator> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                controller: num2,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20)),
@@ -48,7 +58,30 @@ class _CalculatorState extends State<Calculator> {
                 keyboardType: TextInputType.number,
               ),
             ),
-            AddButton(),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AddButton(
+                    num1Controller: num1,
+                    num2Controller: num2,
+                    setResult: setResult,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SubtractButton(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: MultiplyButton(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DivisionButton(),
+                )
+              ],
+            )
           ],
         ),
         Column(
