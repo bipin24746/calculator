@@ -108,6 +108,7 @@
 // }
 
 import 'package:calculator/buttons/addbutton.dart';
+import 'package:calculator/buttons/clear.dart';
 import 'package:calculator/buttons/div.dart';
 import 'package:calculator/buttons/mul.dart';
 import 'package:calculator/buttons/subbutton.dart';
@@ -130,6 +131,7 @@ class _CalculatorState extends State<Calculator> {
     setState(() {
       result = newResult;
     });
+    
   }
 
   @override
@@ -195,11 +197,24 @@ class _CalculatorState extends State<Calculator> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: MultiplyButton(),
+                child: MultiplyButton(
+                  num1COntroller: num1,
+                  num2Controller: num2,
+                  SetResult: SetResult,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: DivisionButton(),
+                child: DivisionButton(
+                  num1Controller: num1,
+                  num2Controller: num2,
+                  SetResult: SetResult,
+                ),
+              ),
+              Clear(
+                num1Controller: num1,
+                num2Controller: num2,
+                SetResult: SetResult,
               )
             ],
           ),
